@@ -206,6 +206,11 @@ variable "enable_kuberay_operator" {
   type        = bool
   default     = false
 }
+variable "kuberay_operator_version" {
+  description = "KubeRay operator default version"
+  type        = string
+  default     = "1.5.1"
+}
 variable "huggingface_token" {
   description = "Hugging Face Secret Token"
   type        = string
