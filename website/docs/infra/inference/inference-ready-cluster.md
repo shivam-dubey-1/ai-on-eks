@@ -430,7 +430,7 @@ Access Grafana dashboard:
 kubectl port-forward -n monitoring svc/kube-prometheus-stack-grafana 3000:80
 ```
 
-Please see the [observability](../guidance/observability.md) for an in-depth look at using the observability
+Please see the [observability](../../guidance/observability.md) for an in-depth look at using the observability
 features.
 
 ### Cost Optimization
