@@ -19,9 +19,9 @@ graph LR
     style B fill:#48bb78,stroke:#333,stroke-width:2px,color:#ffffff
     style C fill:#ed8936,stroke:#333,stroke-width:2px,color:#ffffff
 
-    click A "/docs/infra/inference/inference-ready-cluster" "Go to Inference-Ready Cluster"
-    click B "../../blueprints/inference/inference-charts.md" "Go to Inference Charts"
-    click C "/docs/guidance/" "Go to Guidance"
+    click A "inference/inference-ready-cluster" "Go to Inference-Ready Cluster"
+    click B "../blueprints/inference/inference-charts" "Go to Inference Charts"
+    click C "../guidance/" "Go to Guidance"
 ```
 
 Each phase addresses specific challenges and provides the building blocks needed for successful LLM inference at scale.
@@ -344,8 +344,11 @@ kubectl create secret generic hf-token \
   --from-literal=token=<your-token>
 
 # Deploy Llama 3.2 1B
-helm install llama-inference ./blueprints/inference/inference-charts \
-  --values ./blueprints/inference/inference-charts/values-llama-32-1b-vllm.yaml
+helm repo add ai-on-eks https://awslabs.github.io/ai-on-eks-charts/
+helm repo update
+
+helm install qwen3-1-7b ai-on-eks/inference-charts \
+  -f https://raw.githubusercontent.com/awslabs/ai-on-eks-charts/refs/heads/main/charts/inference-charts/values-llama-32-1b-vllm.yaml
 ```
 
 ### Step 3: Optimize (Ongoing)

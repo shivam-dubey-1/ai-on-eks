@@ -33,7 +33,7 @@ Helm charts for deploying popular AI models on EKS with pre-configured values fo
 
 ## Framework-Specific Deployment Guides
 
-Detailed guides for deploying specific models and frameworks on EKS, organized by hardware type.
+Detailed guides for deploying models with deep dive into specific frameworks on EKS, organized by hardware type.
 
 ### GPU Deployments
 
@@ -43,8 +43,6 @@ Step-by-step guides for deploying models on NVIDIA GPUs:
 - **[NVIDIA Dynamo](/docs/blueprints/inference/framework-guides/GPUs/nvidia-dynamo)** - Deploy models with NVIDIA's Dynamo framework
 - **[NVIDIA NIM Llama 3](/docs/blueprints/inference/framework-guides/GPUs/nvidia-nim-llama3)** - Deploy Llama 3 using NVIDIA NIM
 - **[NVIDIA NIM Operator](/docs/blueprints/inference/framework-guides/GPUs/nvidia-nim-operator)** - Kubernetes operator for NVIDIA NIM deployments
-- **[Ray vLLM DeepSeek](/docs/blueprints/inference/framework-guides/GPUs/ray-vllm-deepseek)** - Deploy DeepSeek models with Ray and vLLM
-- **[Stable Diffusion on GPUs](/docs/blueprints/inference/framework-guides/GPUs/stablediffusion-gpus)** - Deploy Stable Diffusion models for image generation
 - **[vLLM with NVIDIA Triton Server](/docs/blueprints/inference/framework-guides/GPUs/vLLM-NVIDIATritonServer)** - Production inference with Triton and vLLM
 - **[vLLM with Ray Serve](/docs/blueprints/inference/framework-guides/GPUs/vLLM-rayserve)** - Scalable inference with Ray Serve and vLLM
 

@@ -32,14 +32,14 @@ Infrastructure solutions optimized for AI/ML model training workloads:
 
 - **[JARK Stack on EKS](./training/jark.md)** - Complete stack for AI workloads with NVIDIA GPUs, including JupyterHub, Ray, and Kubeflow
 - **[JupyterHub on EKS](./training/jupyterhub.md)** - Interactive development environment for data science and ML
-- **[Trainium on EKS](./training/trainium.md)** - AWS Trainium infrastructure for cost-effective model training
 
 ### Inference Infrastructure
 
 Infrastructure solutions optimized for AI/ML model inference workloads:
 
 - **[Inference-Ready Cluster](./inference/inference-ready-cluster.md)** - Pre-configured EKS cluster for inference workloads
-- **[AIBrix on EKS](./inference/aibrix.md)** - Advanced inference optimization and management
+- **[Nvidia NIM on EKS](../blueprints/inference/framework-guides/GPUs/nvidia-nim-llama3.md)** - Nvidia NIM deployment sample
+- **[Nvidia Dynamo on EKS](../blueprints/inference/framework-guides/GPUs/nvidia-dynamo.md)** - Nvidia Dyanmo deployment sample
 
 ### Miscellaneous
 
