@@ -20,7 +20,7 @@ graph LR
     style C fill:#ed8936,stroke:#333,stroke-width:2px,color:#ffffff
 
     click A "./inference-ready-cluster" "Go to Inference-Ready Cluster"
-    click B "../../blueprints/inference/inference-charts" "Go to Inference Charts"
+    click B "../../blueprints/inference/inference-charts.md" "Go to Inference Charts"
     click C "../../guidance/" "Go to Guidance"
 ```
 
@@ -78,7 +78,7 @@ Follow the [Inference-Ready Cluster deployment guide](./inference-ready-cluster)
 
 ---
 
-## [Phase 2: Model Deployment](../../blueprints/inference/inference-charts)
+## [Phase 2: Model Deployment](../../blueprints/inference/inference-charts.md)
 
 ### Why Deployment Patterns Matter
 
@@ -91,7 +91,7 @@ Once your infrastructure is ready, deploying LLMs requires careful consideration
 
 ### Solution: Inference Charts
 
-The [**AI on EKS Inference Charts**](../../blueprints/inference/inference-charts) provide Helm-based deployments with pre-configured values for popular models, supporting multiple deployment frameworks.
+The [**AI on EKS Inference Charts**](../../blueprints/inference/inference-charts.md) provide Helm-based deployments with pre-configured values for popular models, supporting multiple deployment frameworks.
 
 #### Supported Frameworks
 
@@ -177,7 +177,7 @@ When deploying your model, consider:
 
 #### Get Started
 
-Explore the [Inference Charts documentation](../../blueprints/inference/inference-charts) for detailed configuration options and advanced deployment scenarios.
+Explore the [Inference Charts documentation](../../blueprints/inference/inference-charts.md) for detailed configuration options and advanced deployment scenarios.
 
 ---
 
@@ -369,7 +369,7 @@ kubectl autoscale deployment llama-inference \
 Now that you understand the complete model inference lifecycle, choose your starting point:
 
 - **New to EKS?** Start with [Infrastructure Setup](./inference-ready-cluster)
-- **Have Infrastructure?** Jump to [Model Deployment](../../blueprints/inference/inference-charts)
+- **Have Infrastructure?** Jump to [Model Deployment](../../blueprints/inference/inference-charts.md)
 - **Model Running?** Optimize with [Guidance](../../guidance/index.md)
 
 ## Additional Resources
