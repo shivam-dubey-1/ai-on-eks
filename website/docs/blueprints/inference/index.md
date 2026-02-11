@@ -69,7 +69,7 @@ Step-by-step guides for deploying models on AWS Inferentia and Trainium:
 
 2. **Choose your deployment method**:
    - For quick deployments with popular models → Use [Inference Charts](./inference-charts.md)
-   - For specific frameworks or custom configurations → Follow [Framework-Specific Guides](/docs/blueprints/inference/framework-guides/)
+   - For specific frameworks or custom configurations → See Framework-Specific Guides above
 
 3. **Optimize your deployment** - Apply best practices from the [Guidance section](/docs/guidance/) to improve performance and reduce costs
 
