@@ -14,11 +14,11 @@ The model inference lifecycle consists of three key phases:
 graph LR
     A["<b>Infrastructure Setup</b>"] --> B["<b>Model Deployment</b>"]
     B --> C["<b>Optimization</b>"]
-    
+
     style A fill:#667eea,stroke:#333,stroke-width:2px,color:#ffffff
     style B fill:#48bb78,stroke:#333,stroke-width:2px,color:#ffffff
     style C fill:#ed8936,stroke:#333,stroke-width:2px,color:#ffffff
-    
+
     click A "./inference-ready-cluster" "Go to Inference-Ready Cluster"
     click B "../../blueprints/inference/inference-charts" "Go to Inference Charts"
     click C "../../guidance/" "Go to Guidance"
@@ -224,7 +224,7 @@ Next-generation GPU scheduling for fine-grained resource control and improved ut
 
 **Impact**: Increases GPU utilization from 30-40% to 70-90%, reducing infrastructure costs by 50%+.
 
-**When to Use**: 
+**When to Use**:
 - Running multiple small models on a single GPU
 - Need precise GPU memory allocation
 - Using latest GPU instances (P6e)
@@ -288,21 +288,21 @@ graph TD
     A[Deploy Model] --> B[Establish Baseline Metrics]
     B --> C[Identify Bottlenecks]
     C --> D{Bottleneck Type?}
-    
+
     D -->|GPU Utilization Low| E[Increase Batch Size / Add Replicas]
     D -->|Latency High| F[Reduce Batch Size / Add GPU Memory]
     D -->|Cost High| G[Enable GPU Sharing / Use Smaller Instance]
     D -->|Startup Slow| H[Optimize Container Images]
-    
+
     E --> I[Measure Impact]
     F --> I
     G --> I
     H --> I
-    
+
     I --> J{Meets SLOs?}
     J -->|No| C
     J -->|Yes| K[Production Ready]
-    
+
     style A fill:#667eea,stroke:#333,stroke-width:2px,color:#fff
     style K fill:#48bb78,stroke:#333,stroke-width:2px,color:#fff
 ```
