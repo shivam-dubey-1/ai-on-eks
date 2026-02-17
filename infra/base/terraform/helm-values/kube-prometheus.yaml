@@ -4,7 +4,23 @@ prometheus:
     - apiGroups: [ "metrics.eks.amazonaws.com" ]
       resources: [ "kcm/metrics", "ksh/metrics" ]
       verbs: [ "get" ]
+  %{~ if amp_remotewrite_url != "" ~}
+  serviceAccount:
+    create: false
+    name: ${amp_sa}
+  %{~ endif ~}
   prometheusSpec:
+    %{~ if amp_remotewrite_url != "" ~}
+    serviceAccountName: ${amp_sa}
+    remoteWrite:
+      - url: ${amp_remotewrite_url}
+        sigv4:
+          region: ${region}
+        queueConfig:
+          maxSamplesPerSend: 1000
+          maxShards: 200
+          capacity: 2500
+    %{~ endif ~}
     retention: 5h
     scrapeInterval: 30s
     evaluationInterval: 30s
@@ -110,6 +126,31 @@ grafana:
     passwordKey: admin-password
   service:
     port: ${grafana_service_port}
+  %{~ if amp_url != "" ~}
+  serviceAccount:
+    create: false
+    name: grafana-sa
+  grafana.ini:
+    aws:
+      allowed_auth_providers: ec2_iam_role
+      assume_role_enabled: true
+  sidecar:
+    datasources:
+      defaultDatasourceEnabled: false
+  plugins:
+    - grafana-amazonprometheus-datasource
+  additionalDataSources:
+    - name: Amazon-Managed-Prometheus
+      type: grafana-amazonprometheus-datasource
+      access: proxy
+      url: ${amp_url}
+      isDefault: true
+      jsonData:
+        authType: ec2_iam_role
+        defaultRegion: ${region}
+        sigV4Region: ${region}
+      editable: true
+  %{~ endif ~}
   defaultDashboardsEnabled: true
   dashboardProviders:
     dashboardproviders.yaml:

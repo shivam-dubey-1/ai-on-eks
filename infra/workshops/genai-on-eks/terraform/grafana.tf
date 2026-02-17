@@ -6,6 +6,43 @@
 # Note: Namespace is configured via kube_prometheus_stack_namespace variable
 ################################################################################
 
+locals {
+  amp_datasource_name = "Amazon-Managed-Prometheus"
+  
+  # Transform dashboards to use AMP datasource when enabled
+  dashboards = {
+    vllm = var.enable_amazon_prometheus ? replace(replace(
+      file("${path.module}/grafana-dashboards/vllm-dashboard.json"),
+      "\"type\": \"prometheus\"", "\"type\": \"grafana-amazonprometheus-datasource\""),
+      "\"uid\": \"prometheus\"", "\"uid\": \"${local.amp_datasource_name}\""
+    ) : file("${path.module}/grafana-dashboards/vllm-dashboard.json")
+    
+    ray_default = var.enable_amazon_prometheus ? replace(replace(
+      file("${path.module}/grafana-dashboards/ray-default-grafana-dashboard.json"),
+      "\"type\": \"prometheus\"", "\"type\": \"grafana-amazonprometheus-datasource\""),
+      "\"uid\": \"prometheus\"", "\"uid\": \"${local.amp_datasource_name}\""
+    ) : file("${path.module}/grafana-dashboards/ray-default-grafana-dashboard.json")
+    
+    ray_serve = var.enable_amazon_prometheus ? replace(replace(
+      file("${path.module}/grafana-dashboards/ray-serve-grafana-dashboard.json"),
+      "\"type\": \"prometheus\"", "\"type\": \"grafana-amazonprometheus-datasource\""),
+      "\"uid\": \"prometheus\"", "\"uid\": \"${local.amp_datasource_name}\""
+    ) : file("${path.module}/grafana-dashboards/ray-serve-grafana-dashboard.json")
+    
+    ray_serve_deployment = var.enable_amazon_prometheus ? replace(replace(
+      file("${path.module}/grafana-dashboards/ray-serve-deployment-grafana-dashboard.json"),
+      "\"type\": \"prometheus\"", "\"type\": \"grafana-amazonprometheus-datasource\""),
+      "\"uid\": \"prometheus\"", "\"uid\": \"${local.amp_datasource_name}\""
+    ) : file("${path.module}/grafana-dashboards/ray-serve-deployment-grafana-dashboard.json")
+    
+    dcgm = var.enable_amazon_prometheus ? replace(replace(
+      file("${path.module}/grafana-dashboards/dcgm-grafana-dashboard.json"),
+      "\"type\": \"prometheus\"", "\"type\": \"grafana-amazonprometheus-datasource\""),
+      "\"uid\": \"prometheus\"", "\"uid\": \"${local.amp_datasource_name}\""
+    ) : file("${path.module}/grafana-dashboards/dcgm-grafana-dashboard.json")
+  }
+}
+
 resource "kubectl_manifest" "external_grafana" {
   depends_on = [module.eks]
 
@@ -39,7 +76,7 @@ resource "kubectl_manifest" "vllm_grafana_dashboard_config" {
       name: vllm-grafana-dashboard-config
       namespace: ${var.kube_prometheus_stack_namespace}
     data:
-      vllm-dashboard.json: ${jsonencode(file("${path.module}/grafana-dashboards/vllm-dashboard.json"))}
+      vllm-dashboard.json: ${jsonencode(local.dashboards.vllm)}
   YAML
 }
 
@@ -53,7 +90,7 @@ resource "kubectl_manifest" "ray_default_grafana_dashboard_config" {
       name: ray-grafana-default-dashboard-config
       namespace: ${var.kube_prometheus_stack_namespace}
     data:
-      ray-default-grafana-dashboard.json: ${jsonencode(file("${path.module}/grafana-dashboards/ray-default-grafana-dashboard.json"))}
+      ray-default-grafana-dashboard.json: ${jsonencode(local.dashboards.ray_default)}
   YAML
 }
 
@@ -67,7 +104,7 @@ resource "kubectl_manifest" "ray_serve_grafana_dashboard_config" {
       name: ray-grafana-serve-dashboard-config
       namespace: ${var.kube_prometheus_stack_namespace}
     data:
-      ray-serve-grafana-dashboard.json: ${jsonencode(file("${path.module}/grafana-dashboards/ray-serve-grafana-dashboard.json"))}
+      ray-serve-grafana-dashboard.json: ${jsonencode(local.dashboards.ray_serve)}
   YAML
 }
 
@@ -81,7 +118,7 @@ resource "kubectl_manifest" "ray_serve_deployment_grafana_dashboard_config" {
       name: ray-grafana-serve-deployment-dashboard-config
       namespace: ${var.kube_prometheus_stack_namespace}
     data:
-      ray-serve-deployment-grafana-dashboard.json: ${jsonencode(file("${path.module}/grafana-dashboards/ray-serve-deployment-grafana-dashboard.json"))}
+      ray-serve-deployment-grafana-dashboard.json: ${jsonencode(local.dashboards.ray_serve_deployment)}
   YAML
 }
 
@@ -95,6 +132,6 @@ resource "kubectl_manifest" "dcgm_grafana_dashboard_config" {
       name: dcgm-dashboard-config
       namespace: ${var.kube_prometheus_stack_namespace}
     data:
-      dcgm-grafana-dashboard.json: ${jsonencode(file("${path.module}/grafana-dashboards/dcgm-grafana-dashboard.json"))}
+      dcgm-grafana-dashboard.json: ${jsonencode(local.dashboards.dcgm)}
   YAML
 }
