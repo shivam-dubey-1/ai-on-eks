@@ -11,6 +11,7 @@ locals {
     amp_sa              = local.amp_ingest_service_account
     amp_remotewrite_url = "https://aps-workspaces.${local.region}.amazonaws.com/workspaces/${aws_prometheus_workspace.amp[0].id}/api/v1/remote_write"
     amp_url             = "https://aps-workspaces.${local.region}.amazonaws.com/workspaces/${aws_prometheus_workspace.amp[0].id}"
+    grafana_service_port = var.grafana_service_port
   }) : ""
 
   # Merge base and AMP values
@@ -93,13 +94,11 @@ resource "kubectl_manifest" "kube_prometheus_stack" {
     namespace        = var.kube_prometheus_stack_namespace
   })
   wait = true
-  depends_on = concat(
-    [helm_release.argocd],
-    var.enable_amazon_prometheus ? [
-      module.amp_ingest_pod_identity[0],
-      module.grafana_pod_identity[0]
-    ] : []
-  )
+  depends_on = [
+    helm_release.argocd,
+    module.amp_ingest_pod_identity,
+    module.grafana_pod_identity
+  ]
 }
 
 #---------------------------------------------------------------

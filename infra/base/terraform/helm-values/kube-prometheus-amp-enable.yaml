@@ -46,6 +46,13 @@ alertmanager:
 grafana:
   enabled: true
   defaultDashboardsEnabled: true
+  adminPassword: null
+  admin:
+    existingSecret: "grafana-admin-secret"
+    userKey: admin-user
+    passwordKey: admin-password
+  service:
+    port: ${grafana_service_port}
   serviceAccount:
     create: true
     name: grafana-sa
