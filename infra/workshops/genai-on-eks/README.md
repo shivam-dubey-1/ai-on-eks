@@ -24,7 +24,7 @@ Make sure you have the following installed before starting:
 | Tool | Version | Install |
 | ---- | ------- | ------- |
 | AWS CLI | >= 2.32.8 | [Guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) |
-| Terraform | >= 1.0 | [Guide](https://developer.hashicorp.com/terraform/install) |
+| Terraform | >= 1.3.2 | [Guide](https://developer.hashicorp.com/terraform/install) |
 | kubectl | latest | [Guide](https://kubernetes.io/docs/tasks/tools/) |
 | Docker | latest | [Guide](https://docs.docker.com/get-docker/) |
 
@@ -83,9 +83,9 @@ aws eks update-kubeconfig --name genai-workshop --region <your-region>
 
 Once your infrastructure is deployed, follow the [self-paced setup guide](https://catalog.workshops.aws/genai-on-eks/en-US/50-getting-started/01-self-paced) to get started.
 
-As part of setup, you can optionally create an On-Demand Capacity Reservation (ODCR). ODCR is not mandatory but it ensures you have the capacity to get the required GPU instance. Follow the [ODCR instructions here](https://catalog.workshops.aws/genai-on-eks/en-US/50-getting-started/01-self-paced#create-on-demand-capacity-reservation-(odcr)).
+As part of setup, you need to create an On-Demand Capacity Reservation (ODCR). Follow the [ODCR instructions here](https://catalog.workshops.aws/genai-on-eks/en-US/50-getting-started/01-self-paced#create-on-demand-capacity-reservation-(odcr)).
 
-Once you have your ODCR (or choose to skip it), continue from the [introduction section](https://catalog.workshops.aws/genai-on-eks/en-US/100-introduction) and copy-paste commands directly into your terminal or IDE.
+Once you have your ODCR, continue from the [introduction section](https://catalog.workshops.aws/genai-on-eks/en-US/100-introduction) and copy-paste commands directly into your terminal or IDE.
 
 ---
 
