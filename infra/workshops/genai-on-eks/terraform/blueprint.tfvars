@@ -21,7 +21,7 @@ enable_amazon_prometheus        = true
 enable_nvidia_dcgm_exporter     = false
 kube_prometheus_stack_namespace = "monitoring"
 grafana_service_port            = 3000
-grafana_admin_password          = "notforproductionuse" # change before deploying
+grafana_admin_password          = "notforproductionuse"
 
 ################################################################################
 # Model Storage (S3)
