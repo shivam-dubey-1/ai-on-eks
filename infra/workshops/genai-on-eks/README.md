@@ -87,6 +87,9 @@ As part of setup, you need to create an On-Demand Capacity Reservation (ODCR). F
 
 Once you have your ODCR, continue from the [introduction section](https://catalog.workshops.aws/genai-on-eks/en-US/100-introduction) and copy-paste commands directly into your terminal or IDE.
 
+> [!NOTE]
+> Since you deployed the infrastructure using your own AWS account and Terraform, you already have access to your own terminal and AWS credentials. Skip the "Access the IDE" and "Access AWS Console" steps in the self-paced guide — those are only needed for AWS-hosted event participants who use a pre-provisioned environment. Continue directly from the introduction section onwards.
+
 ---
 
 ## Cleanup
