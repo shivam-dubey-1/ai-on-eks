@@ -8,6 +8,10 @@ locals {
   substr(cidr_block, 0, 4) == "100." ? subnet_id : null])
 
   # exclude addons for EKS Auto Mode as they are managed by EKS Auto Mode
+  # metrics-server: Auto Mode deploys it automatically as in-cluster pods
+  # amazon-cloudwatch-observability: not managed by Auto Mode, but excluded here to avoid
+  #   timeouts during cluster creation (no nodes available yet). Install it post-cluster
+  #   creation if needed: aws eks create-addon --cluster-name <name> --addon-name amazon-cloudwatch-observability
   auto_mode_exclude_addons = toset([
     "vpc-cni",
     "eks-pod-identity-agent",
@@ -15,6 +19,8 @@ locals {
     "coredns",
     "kube-proxy",
     "eks-node-monitoring-agent",
+    "metrics-server",
+    "amazon-cloudwatch-observability",
   ])
 
   base_addons = {
