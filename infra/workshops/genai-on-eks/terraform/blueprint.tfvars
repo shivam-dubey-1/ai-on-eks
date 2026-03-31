@@ -26,6 +26,7 @@ enable_amazon_prometheus        = true
 enable_nvidia_dcgm_exporter     = false
 kube_prometheus_stack_namespace = "monitoring"
 grafana_service_port            = 3000
+grafana_amp_plugin_version      = "2.3.2"
 grafana_admin_password          = "notforproductionuse"
 
 ################################################################################

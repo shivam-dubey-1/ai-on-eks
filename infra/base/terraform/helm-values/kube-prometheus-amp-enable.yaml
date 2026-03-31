@@ -64,7 +64,7 @@ grafana:
     datasources:
       defaultDatasourceEnabled: false
   plugins:
-    - grafana-amazonprometheus-datasource
+    - grafana-amazonprometheus-datasource${amp_plugin_version != "" ? " ${amp_plugin_version}" : ""}
   additionalDataSources:
     - name: Amazon-Managed-Prometheus
       type: grafana-amazonprometheus-datasource

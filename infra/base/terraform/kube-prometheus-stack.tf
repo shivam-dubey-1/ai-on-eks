@@ -12,6 +12,7 @@ locals {
     amp_remotewrite_url  = "https://aps-workspaces.${local.region}.amazonaws.com/workspaces/${aws_prometheus_workspace.amp[0].id}/api/v1/remote_write"
     amp_url              = "https://aps-workspaces.${local.region}.amazonaws.com/workspaces/${aws_prometheus_workspace.amp[0].id}"
     grafana_service_port = var.grafana_service_port
+    amp_plugin_version   = var.grafana_amp_plugin_version
   }) : ""
 
   # Merge base and AMP values
