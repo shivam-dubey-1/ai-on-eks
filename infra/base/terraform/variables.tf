@@ -189,7 +189,7 @@ variable "grafana_operator_version" {
 variable "grafana_amp_plugin_version" {
   description = "Amazon Managed Prometheus Grafana plugin version. Leave empty to install latest."
   type        = string
-  default     = "2.3.2"
+  default     = ""
 }
 variable "grafana_service_port" {
   description = "Grafana service port"
